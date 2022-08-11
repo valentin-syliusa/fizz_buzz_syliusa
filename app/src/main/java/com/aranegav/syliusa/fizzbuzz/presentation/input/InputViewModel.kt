@@ -122,6 +122,7 @@ class InputViewModel : ViewModel() {
         val str1 = str1
         val str2 = str2
         viewModelScope.launch {
+            //Check validity of all fields for the last time and generate the appropriate effect (go to result or display error)
             effect.emit(
                 if (int1 != null && int2 != null && limit != null && !str1.isNullOrEmpty() && !str2.isNullOrEmpty()) {
                     Effect.NavigateToResultScreenAndClearInputs(int1, int2, limit, str1, str2)

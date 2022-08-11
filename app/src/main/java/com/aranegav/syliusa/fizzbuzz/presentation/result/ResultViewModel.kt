@@ -34,6 +34,7 @@ class ResultViewModel @Inject constructor(private val getResultFromInput: GetRes
         viewModelScope.launch {
             val input = Input(int1, int2, limit, str1, str2)
             try {
+                //Retrieve results and emit
                 val results = getResultFromInput.perform(input)
                 state.emit(
                     State(
@@ -42,6 +43,7 @@ class ResultViewModel @Inject constructor(private val getResultFromInput: GetRes
                 )
             } catch (throwable: Throwable) {
                 if (throwable is OutOfMemoryError) {
+                    //If we throw an OutOfMemoryError during results generation send an effect to notify user and go back to input screen
                     effect.emit(Effect.NotifyOfTooHighLimitAndGoToPreviousScreen)
                 }
             }
