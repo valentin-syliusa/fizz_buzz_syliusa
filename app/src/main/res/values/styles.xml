@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attributes for custom ValueInputView -->
+    <declare-styleable name="ValueInputView">
+        <attr name="header" format="string" />
+        <attr name="inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="number" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

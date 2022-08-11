@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:id="@+id/root_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scrollbars="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/header_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="30sp"
+                android:textColor="@color/primaryText"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/fill_fields"/>
+
+            <com.aranegav.syliusa.fizzbuzz.presentation.input.customview.ValueInputView
+                android:id="@+id/int1_value_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_textview"
+                android:layout_marginTop="25dp"
+                app:header="Int1"
+                app:inputType="number"/>
+
+            <com.aranegav.syliusa.fizzbuzz.presentation.input.customview.ValueInputView
+                android:id="@+id/int2_value_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/int1_value_input_view"
+                android:layout_marginTop="10dp"
+                app:header="Int2"
+                app:inputType="number"/>
+
+            <com.aranegav.syliusa.fizzbuzz.presentation.input.customview.ValueInputView
+                android:id="@+id/limit_value_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/int2_value_input_view"
+                android:layout_marginTop="10dp"
+                app:header="Limit"
+                app:inputType="number"/>
+
+            <com.aranegav.syliusa.fizzbuzz.presentation.input.customview.ValueInputView
+                android:id="@+id/str1_value_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/limit_value_input_view"
+                android:layout_marginTop="10dp"
+                app:header="Str1"
+                app:inputType="text"/>
+
+            <com.aranegav.syliusa.fizzbuzz.presentation.input.customview.ValueInputView
+                android:id="@+id/str2_value_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/str1_value_input_view"
+                android:layout_marginTop="10dp"
+                app:header="Str2"
+                app:inputType="text"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/validate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/str2_value_input_view"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/primary_background_button_background"
+                android:textColor="@color/secondaryText"
+                android:textAllCaps="false"
+                android:text="@string/validate"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

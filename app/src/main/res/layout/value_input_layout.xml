@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/header_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:lines="1"
+        android:gravity="start"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/primaryText"
+        tools:text="Int1"/>
+
+    <EditText
+        android:id="@+id/input_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_textview"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/tertiaryText"
+        android:backgroundTint="@color/secondarySystem"
+        android:hint="@string/type_value"/>
+
+    <TextView
+        android:id="@+id/status_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_edittext"
+        android:layout_marginTop="5dp"
+        android:lines="2"
+        android:gravity="start|center_vertical"
+        android:ellipsize="end"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:textColor="@color/primaryText"
+        tools:text="Invalid input"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FizzBuzz</string>
+    <string name="fill_fields">Fill the fields</string>
+    <string name="type_value">Type value</string>
+    <string name="valid_input">Valid input</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="invalid_input_description">One or many of your fields are invalid\nPlease try again</string>
+    <string name="ok">OK</string>
+    <string name="validate">Validate</string>
+    <string name="results">Results</string>
 </resources>
