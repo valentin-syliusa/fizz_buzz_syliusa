@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aranegav.syliusa.fizzbuzz.R
 import com.aranegav.syliusa.fizzbuzz.databinding.ResultLayoutBinding
 import com.aranegav.syliusa.fizzbuzz.presentation.result.list.ResultsListRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,9 +44,34 @@ class ResultFragment : Fragment() {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.observableState.collect { state ->
-                    //Update results in RecyclerView
-                    resultsListRecyclerViewAdapter.results = state.results
+                launch {
+                    viewModel.observableState.collect { state ->
+                        //Update results in RecyclerView
+                        resultsListRecyclerViewAdapter.results = state.results
+                        //Show or hide progress bar following if we have results or not
+                        if (state.results.isEmpty()) {
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.resultsRecyclerview.visibility = View.GONE
+                        } else {
+                            binding.progressBar.visibility = View.GONE
+                            binding.resultsRecyclerview.visibility = View.VISIBLE
+                        }
+                    }
+                }
+                launch {
+                    viewModel.observableEffect.collect { effect ->
+                        when (effect) {
+                            is Effect.NotifyOfTooHighLimitAndGoToPreviousScreen -> {
+                                //Notify that limit was too high and go back to input screen
+                                AlertDialog.Builder(requireContext())
+                                    .setTitle(R.string.too_high_limit)
+                                    .setMessage(R.string.too_high_limit_description)
+                                    .setPositiveButton(R.string.ok) { _, _ ->
+                                        findNavController().popBackStack()
+                                    }.show()
+                            }
+                        }
+                    }
                 }
             }
         }
