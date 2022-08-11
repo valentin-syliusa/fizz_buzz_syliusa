@@ -1,8 +1,12 @@
 package com.aranegav.syliusa.fizzbuzz.presentation.input
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 data class State(
     val int1Valid: Boolean,
@@ -14,7 +18,7 @@ data class State(
 )
 
 sealed class Effect {
-    data class NavigateToResultScreen(
+    data class NavigateToResultScreenAndClearInputs(
         val int1: Int,
         val int2: Int,
         val limit: Int,
@@ -26,21 +30,8 @@ sealed class Effect {
 }
 
 class InputViewModel : ViewModel() {
-    private val state = MutableLiveData<State>()
-    val observableState: LiveData<State> = state
-
-    private val effect = MutableLiveData<Effect>()
-    val observableEffect: LiveData<Effect> = effect
-
-    private var int1: Int? = null
-    private var int2: Int? = null
-    private var limit: Int? = null
-    private var str1: String? = null
-    private var str2: String? = null
-
-    fun onViewCreated() {
-        //Send default state
-        state.value = State(
+    private val state = MutableStateFlow(
+        State(
             int1Valid = false,
             int2Valid = false,
             limitValid = false,
@@ -48,46 +39,76 @@ class InputViewModel : ViewModel() {
             str2Valid = false,
             isValidationButtonEnabled = false
         )
-    }
+    )
+    val observableState: StateFlow<State> = state
+
+    private val effect = MutableSharedFlow<Effect>(replay = 0)
+    val observableEffect: SharedFlow<Effect> = effect
+
+    private var int1: Int? = null
+    private var int2: Int? = null
+    private var limit: Int? = null
+    private var str1: String? = null
+    private var str2: String? = null
 
     fun updateInt1(int1InputAsString: String) {
         int1 = int1InputAsString.toIntOrNull()
-        state.value = state.value?.copy(
-            int1Valid = int1 != null,
-            isValidationButtonEnabled = isValidationButtonEnabled()
-        )
+        viewModelScope.launch {
+            state.emit(
+                state.value.copy(
+                    int1Valid = int1 != null,
+                    isValidationButtonEnabled = isValidationButtonEnabled()
+                )
+            )
+        }
     }
 
     fun updateInt2(int2InputAsString: String) {
         int2 = int2InputAsString.toIntOrNull()
-        state.value = state.value?.copy(
-            int2Valid = int2 != null,
-            isValidationButtonEnabled = isValidationButtonEnabled()
-        )
+        viewModelScope.launch {
+            state.emit(
+                state.value.copy(
+                    int2Valid = int2 != null,
+                    isValidationButtonEnabled = isValidationButtonEnabled()
+                )
+            )
+        }
     }
 
     fun updateLimit(limitInputAsString: String) {
         limit = limitInputAsString.toIntOrNull()
-        state.value = state.value?.copy(
-            limitValid = limit != null,
-            isValidationButtonEnabled = isValidationButtonEnabled()
-        )
+        viewModelScope.launch {
+            state.emit(
+                state.value.copy(
+                    limitValid = limit != null,
+                    isValidationButtonEnabled = isValidationButtonEnabled()
+                )
+            )
+        }
     }
 
     fun updateStr1(str1InputAsString: String) {
         str1 = str1InputAsString
-        state.value = state.value?.copy(
-            str1Valid = !str1.isNullOrEmpty(),
-            isValidationButtonEnabled = isValidationButtonEnabled()
-        )
+        viewModelScope.launch {
+            state.emit(
+                state.value.copy(
+                    str1Valid = !str1.isNullOrEmpty(),
+                    isValidationButtonEnabled = isValidationButtonEnabled()
+                )
+            )
+        }
     }
 
     fun updateStr2(str2InputAsString: String) {
         str2 = str2InputAsString
-        state.value = state.value?.copy(
-            str2Valid = !str2.isNullOrEmpty(),
-            isValidationButtonEnabled = isValidationButtonEnabled()
-        )
+        viewModelScope.launch {
+            state.emit(
+                state.value.copy(
+                    str2Valid = !str2.isNullOrEmpty(),
+                    isValidationButtonEnabled = isValidationButtonEnabled()
+                )
+            )
+        }
     }
 
     private fun isValidationButtonEnabled(): Boolean {
@@ -100,11 +121,14 @@ class InputViewModel : ViewModel() {
         val limit = limit
         val str1 = str1
         val str2 = str2
-        effect.value =
-            if (int1 != null && int2 != null && limit != null && !str1.isNullOrEmpty() && !str2.isNullOrEmpty()) {
-                Effect.NavigateToResultScreen(int1, int2, limit, str1, str2)
-            } else {
-                Effect.DisplayInvalidDataError
-            }
+        viewModelScope.launch {
+            effect.emit(
+                if (int1 != null && int2 != null && limit != null && !str1.isNullOrEmpty() && !str2.isNullOrEmpty()) {
+                    Effect.NavigateToResultScreenAndClearInputs(int1, int2, limit, str1, str2)
+                } else {
+                    Effect.DisplayInvalidDataError
+                }
+            )
+        }
     }
 }

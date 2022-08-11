@@ -43,6 +43,10 @@ class ValueInputView(context: Context, attributeSet: AttributeSet? = null) :
 
     var onInputChange: ((input: String) -> Unit)? = null
 
+    fun clear() {
+        binding.inputEdittext.text = null
+    }
+
     init {
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 

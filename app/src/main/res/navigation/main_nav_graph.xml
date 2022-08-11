@@ -9,5 +9,35 @@
         android:id="@+id/inputFragment"
         android:name="com.aranegav.syliusa.fizzbuzz.presentation.input.InputFragment"
         android:label="InputFragment"
-        tools:layout="@layout/input_layout"/>
+        tools:layout="@layout/input_layout">
+        <action
+            android:id="@+id/displayResults"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.aranegav.syliusa.fizzbuzz.presentation.result.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/result_layout">
+        <argument
+            android:name="int1"
+            app:argType="integer" />
+        <argument
+            android:name="int2"
+            app:argType="integer" />
+        <argument
+            android:name="limit"
+            app:argType="integer" />
+        <argument
+            android:name="str1"
+            app:argType="string" />
+        <argument
+            android:name="str2"
+            app:argType="string" />
+    </fragment>
 </navigation>
