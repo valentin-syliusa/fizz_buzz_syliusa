@@ -4,6 +4,6 @@
         <item name="colorPrimary">@color/secondarySystem</item>
         <item name="colorAccent">@color/secondarySystem</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/secondarySystem</item>
+        <item name="android:statusBarColor">@color/primarySystem</item>
     </style>
 </resources>
