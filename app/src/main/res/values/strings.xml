@@ -6,8 +6,8 @@
     <string name="invalid_input">Invalid input</string>
     <string name="invalid_input_description">One or many of your fields are invalid\nPlease try again</string>
     <string name="ok">OK</string>
-    <string name="too_high_limit">Limit is too high</string>
-    <string name="too_high_limit_description">Your limit is too high and we can\'t properly compute the list\nSet a lower limit</string>
     <string name="validate">Validate</string>
     <string name="results">Results</string>
+    <string name="too_high_limit">Limit is too high</string>
+    <string name="too_high_limit_description">Your limit is too high and we can\'t properly compute the list\nSet a lower limit</string>
 </resources>

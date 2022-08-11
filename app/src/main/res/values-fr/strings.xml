@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FizzBuzz</string>
+    <string name="fill_fields">Remplissez les champs</string>
+    <string name="type_value">Entrez la valeur</string>
+    <string name="valid_input">Valider la saisie</string>
+    <string name="invalid_input">Saisie invalide</string>
+    <string name="invalid_input_description">Un ou plusieurs champs sont invalides\nMerci de réessayer</string>
+    <string name="ok">OK</string>
+    <string name="validate">Valider</string>
+    <string name="results">Résultats</string>
+    <string name="too_high_limit">La limite est trop haute</string>
+    <string name="too_high_limit_description">La lilite est trop haute et le système ne parvient pas à générer la liste\nRenseignez une limite plus basse</string>
+</resources>
