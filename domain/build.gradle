@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-def coreKtxVersion = "1.8.0"
 def coroutinesVersion = "1.6.4"
 def javaxVersion = "1"
 def jUnitVersion = "4.13.2"
@@ -38,8 +37,6 @@ android {
 }
 
 dependencies {
-    //Core KotlinX
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
     //Coroutines Dependency
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     //Injection dependency
