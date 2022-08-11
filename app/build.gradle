@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
+
+def navigationVersion = "2.5.1"
 
 android {
     compileSdk 32
@@ -38,6 +41,10 @@ android {
 dependencies {
     //Implement domain module
     implementation project(":domain")
+
+    //Navigation Dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
