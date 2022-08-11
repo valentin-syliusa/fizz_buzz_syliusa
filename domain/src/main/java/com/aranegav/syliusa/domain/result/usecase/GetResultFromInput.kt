@@ -1,6 +1,8 @@
 package com.aranegav.syliusa.domain.result.usecase
 
 import com.aranegav.syliusa.domain.result.model.Input
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -8,7 +10,7 @@ import javax.inject.Inject
  */
 
 class GetResultFromInput @Inject constructor() {
-    fun perform(input: Input): List<String> {
+    suspend fun perform(input: Input): List<String> = withContext(Dispatchers.IO) {
         //We generate a list of String that'll be our result
         val result = mutableListOf<String>()
         //For i in a range from 0 until the specified limit, we add a String, following some specific rules
@@ -32,6 +34,6 @@ class GetResultFromInput @Inject constructor() {
                 }
             }
         }
-        return result
+        result
     }
 }

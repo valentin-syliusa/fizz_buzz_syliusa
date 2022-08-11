@@ -2,11 +2,12 @@ package com.aranegav.syliusa.domain.result
 
 import com.aranegav.syliusa.domain.result.model.Input
 import com.aranegav.syliusa.domain.result.usecase.GetResultFromInput
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class GetResultFromInputTest {
     @Test
-    fun `Check if result is valid from a given input`() {
+    fun `Check if result is valid from a given input`() = runBlocking {
         //Given a fake input
         val input = Input(
             int1 = 3,
